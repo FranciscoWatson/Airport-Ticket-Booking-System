@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +26,7 @@ namespace Airport_Ticket_Booking_System
         public int NumberOfEconomySeats { get; set; }
         public int NumberOfBusinessSeats { get; set; }
         public int NumberOfFirstClassSeats { get; set; }
+        public List<Passenger> passengers = new();
 
         public Flight(decimal economyPrice, decimal businessPrice, decimal firstClassPrice, string departureCountry, string destinationCountry, DateTime departureDate, string departureAirport, string arrivalAirport, int numberOfEconomySeats, int numberOfBusinessSeats, int numberOfFirstClassSeats)
         {
@@ -39,6 +41,44 @@ namespace Airport_Ticket_Booking_System
             NumberOfEconomySeats = numberOfEconomySeats;
             NumberOfBusinessSeats = numberOfBusinessSeats;
             NumberOfFirstClassSeats = numberOfFirstClassSeats;
+
+        }
+        public void AddPassenger(Passenger passenger, FlightClass flightClass)
+        {            
+            switch (flightClass)
+            {
+                case FlightClass.Economy:
+                    if(NumberOfEconomySeats > 0)
+                    {
+                        passengers.Add(passenger);
+                        NumberOfEconomySeats--;
+                    }
+                    else throw new InvalidOperationException("No seats available in Economy class");
+
+
+                    break;                    
+                case FlightClass.Business:
+                    if(NumberOfBusinessSeats > 0)
+                    {
+                        passengers.Add(passenger);
+                        NumberOfBusinessSeats--;
+                    }
+                    else throw new InvalidOperationException("No seats available in Business class");
+
+                    break;
+                case FlightClass.FirstClass:
+                    if(NumberOfFirstClassSeats > 0)
+                    {
+                        passengers.Add(passenger);
+                        NumberOfFirstClassSeats--;
+                    }
+                    else throw new InvalidOperationException("No seats available in First Class");
+
+                    break;
+                default:
+                    throw new InvalidOperationException("Invalid flight class");
+            }            
         }
     }
+
 }
