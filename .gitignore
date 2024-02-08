@@ -1,0 +1,27 @@
+# .NET
+*.obj
+*.bin
+*.user
+*.suo
+*.tmp
+*.jfm
+*.exe
+*.dll
+*.pdb
+*.log
+*.vspscc
+*.vssscc
+*.pubxml
+*.publishproj
+*.bak
+*.cache
+*.dbmdl
+*.pfx
+*.publishsettings
+ipch/
+obj/
+bin/
+.vs/
+*.userprefs
+*.suo
+*.docstates
