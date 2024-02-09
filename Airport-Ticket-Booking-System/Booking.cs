@@ -16,16 +16,16 @@ namespace Airport_Ticket_Booking_System
         public DateTime BookingDate { get; }
         public FlightClass FlightClass { get; }
 
-        public Booking(Passenger passenger, Flight flight, FlightClass flightClass)
+        public Booking(Passenger passenger, Flight flight, FlightClass flightClass, DateTime bookingDate)
         {
       
-                Passenger = passenger;
-                Flight = flight;
-                FlightClass = flightClass;
+            Passenger = passenger;
+            Flight = flight;
+            FlightClass = flightClass;
+            BookingDate = bookingDate;
 
-                Flight.BookFlight(this);
-
- 
+            Flight.BookFlight(this);
+            
             
         }
     }
