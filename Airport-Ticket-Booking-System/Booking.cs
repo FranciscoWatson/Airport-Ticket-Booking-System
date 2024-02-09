@@ -23,7 +23,6 @@ namespace Airport_Ticket_Booking_System
             Flight = flight;
             FlightClass = flightClass;
             BookingDate = bookingDate;
-
             Flight.BookFlight(this);
             
             
