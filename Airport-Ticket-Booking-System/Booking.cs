@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Airport_Ticket_Booking_System.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Airport_Ticket_Booking_System.Enums;
 
 namespace Airport_Ticket_Booking_System
 {
@@ -12,7 +14,19 @@ namespace Airport_Ticket_Booking_System
         public Flight Flight { get; }
         public Passenger Passenger { get; }
         public DateTime BookingDate { get; }
-        public string FlightClass { get; }
+        public FlightClass FlightClass { get; }
 
+        public Booking(Passenger passenger, Flight flight, FlightClass flightClass)
+        {
+      
+                Passenger = passenger;
+                Flight = flight;
+                FlightClass = flightClass;
+
+                Flight.BookFlight(this);
+
+ 
+            
+        }
     }
 }

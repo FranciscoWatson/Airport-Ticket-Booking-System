@@ -1,20 +1,17 @@
-﻿using System;
+﻿using Airport_Ticket_Booking_System.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Airport_Ticket_Booking_System.Enums;
 
 namespace Airport_Ticket_Booking_System
 {
     public class Flight
     {      
-        public enum FlightClass
-        {
-            Economy,
-            Business,
-            FirstClass
-        }
+        
         public decimal EconomyPrice { get; set; }
         public decimal BusinessPrice { get; set; }
         public decimal FirstClassPrice { get; set; }
@@ -44,12 +41,13 @@ namespace Airport_Ticket_Booking_System
             NumberOfFirstClassSeats = numberOfFirstClassSeats;
 
         }
-        public void AddPassenger(Booking booking, FlightClass flightClass)
-        {            
+
+        public void BookFlight(Booking booking, FlightClass flightClass)
+        {
             switch (flightClass)
             {
                 case FlightClass.Economy:
-                    if(NumberOfEconomySeats > 0)
+                    if (NumberOfEconomySeats > 0)
                     {
                         bookings.Add(booking);
                         NumberOfEconomySeats--;
@@ -57,9 +55,9 @@ namespace Airport_Ticket_Booking_System
                     else throw new InvalidOperationException("No seats available in Economy class");
 
 
-                    break;                    
+                    break;
                 case FlightClass.Business:
-                    if(NumberOfBusinessSeats > 0)
+                    if (NumberOfBusinessSeats > 0)
                     {
                         bookings.Add(booking);
                         NumberOfBusinessSeats--;
@@ -68,7 +66,7 @@ namespace Airport_Ticket_Booking_System
 
                     break;
                 case FlightClass.FirstClass:
-                    if(NumberOfFirstClassSeats > 0)
+                    if (NumberOfFirstClassSeats > 0)
                     {
                         bookings.Add(booking);
                         NumberOfFirstClassSeats--;
@@ -78,7 +76,44 @@ namespace Airport_Ticket_Booking_System
                     break;
                 default:
                     throw new InvalidOperationException("Invalid flight class");
-            }            
+            }
+        }
+
+        internal void BookFlight(Booking booking)
+        {
+            switch (booking.FlightClass)
+            {
+                case FlightClass.Economy:
+                    if (NumberOfEconomySeats > 0)
+                    {
+                        bookings.Add(booking);
+                        NumberOfEconomySeats--;
+                    }
+                    else throw new FlightFullException("No seats available in Economy class");
+
+
+                    break;
+                case FlightClass.Business:
+                    if (NumberOfBusinessSeats > 0)
+                    {
+                        bookings.Add(booking);
+                        NumberOfBusinessSeats--;
+                    }
+                    else throw new FlightFullException("No seats available in Business class");
+
+                    break;
+                case FlightClass.FirstClass:
+                    if (NumberOfFirstClassSeats > 0)
+                    {
+                        bookings.Add(booking);
+                        NumberOfFirstClassSeats--;
+                    }
+                    else throw new FlightFullException("No seats available in FirstClass class");
+
+                    break;
+                default:
+                    throw new InvalidOperationException("Invalid flight class");
+            }
         }
     }
 
