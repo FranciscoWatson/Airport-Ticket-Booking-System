@@ -10,7 +10,7 @@ namespace Airport_Ticket_Booking_System
     {
         public int PassengerId { get; set; }
         public int Name { get; set; }
-
+        public List<Booking> Bookings { get; set; } = new List<Booking>();
         public Passenger(int passengerId, int name)
         {
             PassengerId = passengerId;

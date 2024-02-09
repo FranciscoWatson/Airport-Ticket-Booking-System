@@ -26,7 +26,8 @@ namespace Airport_Ticket_Booking_System
         public int NumberOfEconomySeats { get; set; }
         public int NumberOfBusinessSeats { get; set; }
         public int NumberOfFirstClassSeats { get; set; }
-        public List<Passenger> passengers = new();
+
+        public List<Booking> bookings { get; set; } = new List<Booking>();
 
         public Flight(decimal economyPrice, decimal businessPrice, decimal firstClassPrice, string departureCountry, string destinationCountry, DateTime departureDate, string departureAirport, string arrivalAirport, int numberOfEconomySeats, int numberOfBusinessSeats, int numberOfFirstClassSeats)
         {
@@ -43,14 +44,14 @@ namespace Airport_Ticket_Booking_System
             NumberOfFirstClassSeats = numberOfFirstClassSeats;
 
         }
-        public void AddPassenger(Passenger passenger, FlightClass flightClass)
+        public void AddPassenger(Booking booking, FlightClass flightClass)
         {            
             switch (flightClass)
             {
                 case FlightClass.Economy:
                     if(NumberOfEconomySeats > 0)
                     {
-                        passengers.Add(passenger);
+                        bookings.Add(booking);
                         NumberOfEconomySeats--;
                     }
                     else throw new InvalidOperationException("No seats available in Economy class");
@@ -60,7 +61,7 @@ namespace Airport_Ticket_Booking_System
                 case FlightClass.Business:
                     if(NumberOfBusinessSeats > 0)
                     {
-                        passengers.Add(passenger);
+                        bookings.Add(booking);
                         NumberOfBusinessSeats--;
                     }
                     else throw new InvalidOperationException("No seats available in Business class");
@@ -69,7 +70,7 @@ namespace Airport_Ticket_Booking_System
                 case FlightClass.FirstClass:
                     if(NumberOfFirstClassSeats > 0)
                     {
-                        passengers.Add(passenger);
+                        bookings.Add(booking);
                         NumberOfFirstClassSeats--;
                     }
                     else throw new InvalidOperationException("No seats available in First Class");
