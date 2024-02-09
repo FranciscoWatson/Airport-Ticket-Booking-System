@@ -79,7 +79,7 @@ namespace Airport_Ticket_Booking_System
             }
         }
 
-        internal void BookFlight(Booking booking)
+        public void BookFlight(Booking booking)
         {
             switch (booking.FlightClass)
             {
@@ -112,7 +112,21 @@ namespace Airport_Ticket_Booking_System
 
                     break;
                 default:
-                    throw new InvalidOperationException("Invalid flight class");
+                    throw new InvalidOperationException("Invalid Flight Class");
+            }
+        }
+        public decimal GetPrice(FlightClass flightClass)
+        {
+            switch (flightClass)
+            {
+                case FlightClass.Economy:
+                    return EconomyPrice;
+                case FlightClass.Business:
+                    return BusinessPrice;
+                case FlightClass.FirstClass:
+                    return FirstClassPrice;
+                default:
+                    throw new InvalidOperationException("Invalid Flight Class");
             }
         }
     }
