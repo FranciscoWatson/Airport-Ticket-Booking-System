@@ -13,7 +13,7 @@ namespace Airport_Ticket_Booking_System
 {
     internal class FileManager
     {
-        public List<Flight> ImportFlightsFromCsv(Flight flights, string filePath)
+        public void ImportFlightsFromCsv(List<Flight> flights, string filePath)
         {
             try
             {
@@ -47,12 +47,12 @@ namespace Airport_Ticket_Booking_System
                             numberOfBusinessSeats, numberOfFirstClassSeats
                         );
 
-                        importedFlights.Add(flight);
+                        flights.Add(flight);
                         
                      }
                 }
 
-                return importedFlights;
+                
             }
             catch (Exception ex)
             {

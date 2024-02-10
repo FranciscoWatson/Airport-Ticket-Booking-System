@@ -48,6 +48,13 @@ namespace Airport_Ticket_Booking_System
         {
             return bookings.Where(b => b.Passenger == passenger).ToList();
         }
+        
+        public void ImportFlightsFromCsv(List<Flight> flights, string filePath)
+        {
+            FileManager fileManager = new FileManager();
+            fileManager.ImportFlightsFromCsv(flights, filePath);
+            
+        }
 
     }
 }
