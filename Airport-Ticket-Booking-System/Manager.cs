@@ -11,6 +11,7 @@ namespace Airport_Ticket_Booking_System
     {       
         public string Name { get; set; }
         public List<Booking> bookings;
+        private FileManager fileManager = new FileManager();
 
         public Manager(string name)
         {
@@ -51,7 +52,7 @@ namespace Airport_Ticket_Booking_System
         
         public void ImportFlightsFromCsv(List<Flight> flights, string filePath)
         {
-            FileManager fileManager = new FileManager();
+            
             fileManager.ImportFlightsFromCsv(flights, filePath);
             
         }
