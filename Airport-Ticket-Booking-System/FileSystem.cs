@@ -57,7 +57,10 @@ namespace Airport_Ticket_Booking_System
             }
         }
 
-
+        public List<Flight> SearchForAvailableFlights()
+        {
+            return flights;
+        }
 
 
 
