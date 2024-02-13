@@ -12,17 +12,15 @@ namespace Airport_Ticket_Booking_System
 {
     public class FileSystem
     {
-        public List<Flight> flights {  get; set; }
-        public List<Booking> bookings { get; set; }
-        public List<Passenger> passengers { get; set; }
-         
-        public FileSystem(string filePath)
-        {
-            flights = new List<Flight>();
-            ImportFlightsFromCsv(filePath);
+        
+        public FileSystem(string filePath, List<Flight> flights, List<Booking> bookings, List<Passenger> passengers)
+        {            
+            ImportFlightsFromCsv(filePath, flights);
+            //import passengers
+            //import bookings
         }
 
-        public void ImportFlightsFromCsv(string filePath)
+        public void ImportFlightsFromCsv(string filePath, List<Flight> flights)
         {
             try
             {
@@ -59,15 +57,5 @@ namespace Airport_Ticket_Booking_System
                 Console.WriteLine($"Error reading CSV file: {ex.Message}");
             }
         }
-
-        public List<Flight> SearchForAvailableFlights()
-        {
-            return flights;
-        }
-
-
-
-
-
     } 
 }

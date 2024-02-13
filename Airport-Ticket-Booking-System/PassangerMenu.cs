@@ -2,7 +2,7 @@
 {
     public static class PassangerMenu
     {
-        public static void Open(FileSystem fileSystem)
+        public static void Open(List<Flight> flights, List<Booking> bookings, List<Passenger> passengers)
         {
             {
                 bool menu = true;

@@ -6,14 +6,18 @@ namespace Airport_Ticket_Booking_System
     {
         static void Main()
         {
+            List<Passenger> passengers = new List<Passenger>();
+            List<Flight> flights = new List<Flight>();
+            List<Booking> bookings = new List<Booking>();
+            FileSystem fileSystem = new FileSystem(@"C:\Users\Francisco\Desktop\test\test.csv", flights, bookings, passengers);
+
             bool mainMenu = true;
             
             while (mainMenu)
             {
-                FileSystem fileSystem = new FileSystem(@"C:\Users\Francisco\Desktop\test\test.csv");
                 Console.WriteLine("***Airport Ticket Booking System***");
-                Console.WriteLine("1. Enter as Manager");
-                Console.WriteLine("2. Enter as Passanger");
+                Console.WriteLine("1. Login as Manager");
+                Console.WriteLine("2. Login as Passenger");
                 Console.WriteLine("3. Exit");
                 Console.Write("Enter an option (1-3): ");
 
@@ -24,12 +28,10 @@ namespace Airport_Ticket_Booking_System
                     switch (option)
                     {
                         case 1:
-                            ManagerMenu.Open(fileSystem);
+                            ManagerMenu.Open(flights, bookings, passengers, fileSystem);
                             break;
-                        case 2:
-                            Console.WriteLine("\n");
-                            PassangerMenu.Open(fileSystem);
-                            
+                        case 2:                           
+                            PassangerMenu.Open(flights, bookings, passengers);                            
                             break;
                         case 3:
                             mainMenu = false;
@@ -41,11 +43,11 @@ namespace Airport_Ticket_Booking_System
                     }
                 }
                 else Console.WriteLine("Invalid choice option");
-                Manager managerOne = new Manager("Francisco", fileSystem);
+                Manager managerOne = new Manager("Francisco", bookings);
                 Passenger passengerOne = new Passenger(1, "Juan");
-                passengerOne.BookFlight(fileSystem.flights[0], Enums.FlightClass.Economy, DateTime.Now);
+                passengerOne.BookFlight(flights[0], Enums.FlightClass.Economy, DateTime.Now);
 
-                Console.WriteLine(string.Join(Environment.NewLine, fileSystem.flights[0].bookings.Select(b =>
+                Console.WriteLine(string.Join(Environment.NewLine, flights[0].bookings.Select(b =>
             $"Booking ID: {b.BookingID}, Passenger Name: {b.Passenger.Name}, Flight Class: {b.FlightClass}, Booking Date: {b.BookingDate}")));
 
             }

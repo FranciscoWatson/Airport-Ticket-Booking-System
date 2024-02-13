@@ -2,7 +2,7 @@
 {
     public static class ManagerMenu
     {
-        public static void Open(FileSystem fileSystem)
+        public static void Open(List<Flight> flights, List<Booking> bookings, List<Passenger> passengers, FileSystem fileSystem)
         {
             bool menu = true;
 
@@ -23,11 +23,11 @@
                     switch (option)
                     {
                         case 1:
-                            FilerBookings(fileSystem);           
+                            FilerBookings(bookings);           
                             break;
                         case 2:
                             // Upload Flights from file
-                            ImportFlights(fileSystem);
+                            ImportFlights(flights, fileSystem);
                             break;
                         case 3:
                             // Manage Bookings
@@ -45,7 +45,7 @@
             }
         }
 
-        private static void FilerBookings(FileSystem fileSystem)
+        private static void FilerBookings(List<Booking> bookings)
         {
             Console.Clear();
             Console.WriteLine("***Filter Bookings***");
@@ -68,14 +68,13 @@
                 switch (option)
                 {
                     case 1:
-                        FilerBookings(fileSystem);
+                        FilerBookings(bookings);
                         break;
                     case 2:
-                        // Upload Flights from file
-                        ImportFlights(fileSystem);
+                       
                         break;
                     case 3:
-                        // Manage Bookings
+                        
                         break;
                     case 10:                       
                         break;
@@ -88,11 +87,11 @@
             else Console.WriteLine("Invalid choice option");
         }
 
-        private static void ImportFlights(FileSystem fileSystem)
+        private static void ImportFlights(List<Flight> flights, FileSystem fileSystem)
         {
             Console.WriteLine("Enter File Path");
             string filePath = Console.ReadLine();
-            fileSystem.ImportFlightsFromCsv(filePath);
+            fileSystem.ImportFlightsFromCsv(filePath, flights);
 
         }
     }
