@@ -13,7 +13,9 @@ namespace Airport_Ticket_Booking_System
     public class FileSystem
     {
         public List<Flight> flights {  get; set; }
-
+        public List<Booking> bookings { get; set; }
+        public List<Passenger> passengers { get; set; }
+         
         public FileSystem(string filePath)
         {
             flights = new List<Flight>();
@@ -26,7 +28,7 @@ namespace Airport_Ticket_Booking_System
             {
                 using (var reader = new StreamReader(filePath))
                 {
-                    // Skip the header line
+                    
                     reader.ReadLine();
 
                     while (!reader.EndOfStream)
@@ -49,10 +51,11 @@ namespace Airport_Ticket_Booking_System
                         flights.Add(flight);
                     }
                 }
+                Console.WriteLine("Flights Imported Successfully");
             }
             catch (Exception ex)
             {
-                // Handle exceptions (e.g., file not found, invalid format, etc.)
+                
                 Console.WriteLine($"Error reading CSV file: {ex.Message}");
             }
         }

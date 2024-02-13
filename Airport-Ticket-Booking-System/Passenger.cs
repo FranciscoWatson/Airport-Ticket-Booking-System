@@ -30,7 +30,7 @@ namespace Airport_Ticket_Booking_System
             {
                 Console.WriteLine($"An error occurred during booking. {ex.Message}");
             }
-
+            
         }
     }
 }
