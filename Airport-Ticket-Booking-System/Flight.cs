@@ -11,7 +11,6 @@ namespace Airport_Ticket_Booking_System
 {
     public class Flight
     {      
-        
         public decimal EconomyPrice { get; set; }
         public decimal BusinessPrice { get; set; }
         public decimal FirstClassPrice { get; set; }
@@ -129,6 +128,18 @@ namespace Airport_Ticket_Booking_System
                     throw new InvalidOperationException("Invalid Flight Class");
             }
         }
+
+        public int GetAvailableSeats(FlightClass flightClass)
+        {
+            return flightClass switch
+            {
+                FlightClass.Economy => NumberOfEconomySeats,
+                FlightClass.Business => NumberOfBusinessSeats,
+                FlightClass.FirstClass => NumberOfFirstClassSeats,
+                _ => throw new InvalidOperationException("Invalid Flight Class"),
+            };
+        }
+
     }
 
 }
