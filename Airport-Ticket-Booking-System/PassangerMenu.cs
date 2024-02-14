@@ -27,8 +27,9 @@ namespace Airport_Ticket_Booking_System
                         switch (option)
                         {
                             case 1:
-                                BookAFlight(flights, passenger);
+                                BookAFlight(flights, passenger, bookings);
                                 break;
+
                             case 2:
                                 SelectFlight(flights);
 
@@ -36,6 +37,7 @@ namespace Airport_Ticket_Booking_System
                             case 3:
                                 // Manage Your Bookings
                                 break;
+
                             case 4:
                                 menu = false;
                                 break;
@@ -50,7 +52,7 @@ namespace Airport_Ticket_Booking_System
             }
         }
 
-        private static void BookAFlight(List<Flight> flights, Passenger passenger)
+        private static void BookAFlight(List<Flight> flights, Passenger passenger, List<Booking> bookings)
         {
             Console.WriteLine("***Book a Flight***");
             Console.WriteLine("Select a flight to book:");
@@ -62,18 +64,19 @@ namespace Airport_Ticket_Booking_System
                 {
                     var selectedFlight = flights[selectedFlightIndex];
 
-                    // Proceed with booking
+                    
                     Console.WriteLine($"You have selected the following flight:");
                     Console.WriteLine($"Flight from {selectedFlight.DepartureAirport} to {selectedFlight.ArrivalAirport} on {selectedFlight.DepartureDate}");
 
-                    // Collect passenger details, flight class, etc.
-                    Console.WriteLine("Enter passenger details:");
-                    string passengerDetails = Console.ReadLine();
+                   
 
                     Console.WriteLine("Enter flight class (1. Economy, 2. Business, 3. First Class):");
                     if (Enum.TryParse<FlightClass>(Console.ReadLine(), out FlightClass selectedClass))
                     {
-                        passenger.BookFlight(selectedFlight, selectedClass, DateTime.Now);
+                        Booking newBooking = new Booking(passenger, selectedFlight, selectedClass, DateTime.Now);
+                        bookings.Add(newBooking);                      
+                        
+
                     }
                     else
                     {

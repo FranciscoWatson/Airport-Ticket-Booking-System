@@ -27,12 +27,10 @@ namespace Airport_Ticket_Booking_System
             Name = name;
         }
 
-        public void BookFlight(Flight flight, FlightClass flightClass, DateTime bookingDate) 
+        public void BookFlight(Booking newBooking) 
         {
             try
-            {
-                
-                Booking newBooking = new Booking(this, flight, flightClass, bookingDate);
+            {                               
                 Bookings.Add(newBooking);
             }catch(FlightFullException ex)
             {

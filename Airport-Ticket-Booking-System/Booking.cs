@@ -33,6 +33,7 @@ namespace Airport_Ticket_Booking_System
             FlightClass = flightClass;
             BookingDate = bookingDate;
             Flight.BookFlight(this);
+            Passenger.BookFlight(this);
         }
 
         private static int GetNextBookingId()

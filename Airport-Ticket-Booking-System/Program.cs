@@ -27,11 +27,11 @@ namespace Airport_Ticket_Booking_System
                 {
                     switch (option)
                     {
-                        case 1:
+                        case 1:                            
                             ManagerMenu.Open(flights, bookings, passengers, fileSystem);
                             break;
                         case 2:
-                            Passenger passanger = new Passenger(1, "asd");
+                            Passenger passanger = SelectPassenger(passengers);
                             PassangerMenu.Open(flights, bookings, passanger);                            
                             break;
                         case 3:
@@ -45,18 +45,40 @@ namespace Airport_Ticket_Booking_System
                 }
                 else Console.WriteLine("Invalid choice option");
                 Manager managerOne = new Manager("Francisco", bookings);
-                Passenger passengerOne = new Passenger("Juan");
-                passengerOne.BookFlight(flights[0], Enums.FlightClass.Economy, DateTime.Now);
 
-                Console.WriteLine(string.Join(Environment.NewLine, flights[0].bookings.Select(b =>
-            $"Booking ID: {b.BookingID}, Passenger Name: {b.Passenger.Name}, Flight Class: {b.FlightClass}, Booking Date: {b.BookingDate}, From: {b.Flight.DepartureAirport}, To: {b.Flight.ArrivalAirport}")));
-
+                         Console.WriteLine(string.Join(Environment.NewLine, flights[0].bookings.Select(b =>
+                   $"Booking ID: {b.BookingID}, Passenger Name: {b.Passenger.Name}, Flight Class: {b.FlightClass}, Booking Date: {b.BookingDate}, From: {b.Flight.DepartureAirport}, To: {b.Flight.ArrivalAirport}")));
+                      
             }
             Console.WriteLine("Exiting Program...");
 
 
            
 
+        }
+
+        private static Passenger SelectPassenger(List<Passenger> passengers)
+        {
+            Console.WriteLine("Available Passengers:");
+
+            var numberedPassengers = passengers.Select((passenger, index) => $"{index + 1}. {passenger.Name}");
+            Console.WriteLine(string.Join(Environment.NewLine, numberedPassengers));
+
+            int selectedNumber;
+            while (true)
+            {
+                Console.Write("Enter the number corresponding to the passenger you want to select: ");
+                if (int.TryParse(Console.ReadLine(), out selectedNumber) && selectedNumber >= 1 && selectedNumber <= passengers.Count)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid number.");
+                }
+            }
+
+            return passengers[selectedNumber - 1];
         }
     }
 }
