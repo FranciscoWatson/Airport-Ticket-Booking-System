@@ -10,7 +10,9 @@ using Airport_Ticket_Booking_System.Enums;
 namespace Airport_Ticket_Booking_System
 {
     public class Flight
-    {      
+    {
+        private static int lastFlightId = 0;
+        public int FlightId { get; set; }
         public decimal EconomyPrice { get; set; }
         public decimal BusinessPrice { get; set; }
         public decimal FirstClassPrice { get; set; }
@@ -27,6 +29,23 @@ namespace Airport_Ticket_Booking_System
 
         public Flight(decimal economyPrice, decimal businessPrice, decimal firstClassPrice, string departureCountry, string destinationCountry, DateTime departureDate, string departureAirport, string arrivalAirport, int numberOfEconomySeats, int numberOfBusinessSeats, int numberOfFirstClassSeats)
         {
+            FlightId = GetNextFlightId();
+            EconomyPrice = economyPrice;
+            BusinessPrice = businessPrice;
+            FirstClassPrice = firstClassPrice;
+            DepartureCountry = departureCountry;
+            DestinationCountry = destinationCountry;
+            DepartureDate = departureDate;
+            DepartureAirport = departureAirport;
+            ArrivalAirport = arrivalAirport;
+            NumberOfEconomySeats = numberOfEconomySeats;
+            NumberOfBusinessSeats = numberOfBusinessSeats;
+            NumberOfFirstClassSeats = numberOfFirstClassSeats;
+
+        }
+        public Flight(int flightId, decimal economyPrice, decimal businessPrice, decimal firstClassPrice, string departureCountry, string destinationCountry, DateTime departureDate, string departureAirport, string arrivalAirport, int numberOfEconomySeats, int numberOfBusinessSeats, int numberOfFirstClassSeats)
+        {
+            FlightId = flightId;
             EconomyPrice = economyPrice;
             BusinessPrice = businessPrice;
             FirstClassPrice = firstClassPrice;
@@ -140,6 +159,15 @@ namespace Airport_Ticket_Booking_System
             };
         }
 
+        public static void SetLastFlightId(int value)
+        {
+            lastFlightId = value;
+        }
+        private static int GetNextFlightId()
+        {
+            return ++lastFlightId;
+        }
     }
+
 
 }

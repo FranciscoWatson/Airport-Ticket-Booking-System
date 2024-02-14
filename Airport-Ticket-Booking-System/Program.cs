@@ -9,7 +9,7 @@ namespace Airport_Ticket_Booking_System
             List<Passenger> passengers = new List<Passenger>();
             List<Flight> flights = new List<Flight>();
             List<Booking> bookings = new List<Booking>();
-            FileSystem fileSystem = new FileSystem(@"C:\Users\Francisco\Desktop\test\test.csv", flights, bookings, passengers);
+            FileSystem fileSystem = new FileSystem(flights, bookings, passengers);
 
             bool mainMenu = true;
             
@@ -30,8 +30,9 @@ namespace Airport_Ticket_Booking_System
                         case 1:
                             ManagerMenu.Open(flights, bookings, passengers, fileSystem);
                             break;
-                        case 2:                           
-                            PassangerMenu.Open(flights, bookings, passengers);                            
+                        case 2:
+                            Passenger passanger = new Passenger(1, "asd");
+                            PassangerMenu.Open(flights, bookings, passanger);                            
                             break;
                         case 3:
                             mainMenu = false;
@@ -44,11 +45,11 @@ namespace Airport_Ticket_Booking_System
                 }
                 else Console.WriteLine("Invalid choice option");
                 Manager managerOne = new Manager("Francisco", bookings);
-                Passenger passengerOne = new Passenger(1, "Juan");
+                Passenger passengerOne = new Passenger("Juan");
                 passengerOne.BookFlight(flights[0], Enums.FlightClass.Economy, DateTime.Now);
 
                 Console.WriteLine(string.Join(Environment.NewLine, flights[0].bookings.Select(b =>
-            $"Booking ID: {b.BookingID}, Passenger Name: {b.Passenger.Name}, Flight Class: {b.FlightClass}, Booking Date: {b.BookingDate}")));
+            $"Booking ID: {b.BookingID}, Passenger Name: {b.Passenger.Name}, Flight Class: {b.FlightClass}, Booking Date: {b.BookingDate}, From: {b.Flight.DepartureAirport}, To: {b.Flight.ArrivalAirport}")));
 
             }
             Console.WriteLine("Exiting Program...");

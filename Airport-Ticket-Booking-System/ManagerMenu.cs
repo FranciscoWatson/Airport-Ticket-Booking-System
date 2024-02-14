@@ -4,8 +4,8 @@
     {
         public static void Open(List<Flight> flights, List<Booking> bookings, List<Passenger> passengers, FileSystem fileSystem)
         {
+            Manager manager = new Manager("Francisco", bookings);
             bool menu = true;
-
             while (menu)
             {
                 Console.Clear();
