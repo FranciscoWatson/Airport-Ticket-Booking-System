@@ -14,7 +14,7 @@ namespace Airport_Ticket_Booking_System
 
                 while (menu)
                 {
-              
+                    Console.Clear();
                     Console.WriteLine("***Passanger Interface***");
                     Console.WriteLine("1. Book a Flight");
                     Console.WriteLine("2. Search for a Flight");
@@ -60,6 +60,7 @@ namespace Airport_Ticket_Booking_System
 
             while (menu)
             {
+                
                 Console.WriteLine("*** Manage Bookings ***");
                 Console.WriteLine("1. Cancel a Booking");
                 Console.WriteLine("2. Modify a Booking");
@@ -75,12 +76,16 @@ namespace Airport_Ticket_Booking_System
                     {
                         case 1:
                             CancelBooking(passenger, bookings);
+                            ClearConsoleAndContinue();
                             break;
                         case 2:
                             ModifyBooking(passenger, bookings);
+                            ClearConsoleAndContinue();
+
                             break;
                         case 3:
                             ViewPersonalBookings(passenger);
+                            ClearConsoleAndContinue();
                             break;
                         case 4:
                             menu = false;
@@ -140,6 +145,7 @@ namespace Airport_Ticket_Booking_System
 
         private static void CancelBooking(Passenger passenger, List<Booking> bookings)
         {
+            Console.Clear();
             Console.WriteLine("Select a booking to Cancel:");
             ViewPersonalBookings(passenger);
             Console.WriteLine("Enter the Index of the Booking to Cancel: ");
@@ -166,6 +172,7 @@ namespace Airport_Ticket_Booking_System
 
         private static void BookAFlight(List<Flight> flights, Passenger passenger, List<Booking> bookings)
         {
+            Console.Clear();
             Console.WriteLine("*** Book a Flight ***");
             Console.WriteLine("Select a flight to book:");
             SelectFlight(flights);
@@ -361,5 +368,13 @@ namespace Airport_Ticket_Booking_System
             }            
 
         }
+        public static void ClearConsoleAndContinue()
+        {
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            Console.Clear();
+        }
     }
+
 }

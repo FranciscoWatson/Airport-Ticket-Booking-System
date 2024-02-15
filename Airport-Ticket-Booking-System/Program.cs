@@ -17,6 +17,7 @@ namespace Airport_Ticket_Booking_System
             
             while (mainMenu)
             {
+                ClearConsoleAndContinue();
                 Console.WriteLine("***Airport Ticket Booking System***");
                 Console.WriteLine("1. Login as Manager");
                 Console.WriteLine("2. Login as Passenger");
@@ -57,6 +58,7 @@ namespace Airport_Ticket_Booking_System
 
         private static Passenger SelectPassenger(List<Passenger> passengers)
         {
+            Console.Clear();
             Console.WriteLine("Available Passengers:");
 
             var numberedPassengers = passengers.Select((passenger, index) => $"{index + 1}. {passenger.Name}");
@@ -77,6 +79,14 @@ namespace Airport_Ticket_Booking_System
             }
 
             return passengers[selectedNumber - 1];
+        }
+
+        public static void ClearConsoleAndContinue()
+        {
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
