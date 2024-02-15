@@ -15,7 +15,7 @@ namespace Airport_Ticket_Booking_System
         public Flight Flight { get; }
         public Passenger Passenger { get; }
         public DateTime BookingDate { get; }
-        public FlightClass FlightClass { get; }
+        public FlightClass FlightClass { get; set; }
 
         public Booking(int bookingId, Passenger passenger, Flight flight, FlightClass flightClass, DateTime bookingDate)
         {
@@ -43,6 +43,18 @@ namespace Airport_Ticket_Booking_System
         public static void SetLastBookingId(int value)
         {
             lastBookingId = value;
+        }
+
+        public void CancelBooking(Booking selectedBooking)
+        {
+            Flight.CancelBooking(selectedBooking);
+        }
+
+        public void ModifyClass(FlightClass newFlightClass)
+        {
+
+      //      FlightClass = newFlightClass;
+            Flight.ModifyClass(this, newFlightClass);
         }
     }
 }

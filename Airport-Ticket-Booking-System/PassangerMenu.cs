@@ -1,4 +1,5 @@
 ﻿using Airport_Ticket_Booking_System.Enums;
+using System;
 using System.Runtime.InteropServices;
 
 namespace Airport_Ticket_Booking_System
@@ -35,7 +36,7 @@ namespace Airport_Ticket_Booking_System
 
                                 break;
                             case 3:
-                                ManageBookings(passenger);
+                                ManageBookings(passenger, bookings);
                                 break;
 
                             case 4:
@@ -52,7 +53,7 @@ namespace Airport_Ticket_Booking_System
             }
         }
 
-        private static void ManageBookings(Passenger passenger)
+        private static void ManageBookings(Passenger passenger, List<Booking> bookings)
         {
             bool menu = true;
 
@@ -72,10 +73,10 @@ namespace Airport_Ticket_Booking_System
                     switch (option)
                     {
                         case 1:
-                            CancelBooking(passenger);
+                            CancelBooking(passenger, bookings);
                             break;
                         case 2:
-                            ModifyBooking(passenger);
+                            ModifyBooking(passenger, bookings);
                             break;
                         case 3:
                             ViewPersonalBookings(passenger);
@@ -93,18 +94,73 @@ namespace Airport_Ticket_Booking_System
         }
 
         private static void ViewPersonalBookings(Passenger passenger)
-        {
-            throw new NotImplementedException();
-        }
+        {        
+            Console.WriteLine("Your Bookings:");
+            for (int i = 0; i < passenger.Bookings.Count; i++)
+            {
+                Booking booking = passenger.Bookings[i];
+                Console.WriteLine($"{i + 1}. {booking.Flight.DepartureAirport} to {booking.Flight.ArrivalAirport} on {booking.Flight.DepartureDate}, Class: {booking.FlightClass}, Booking Date: {booking.BookingDate}");
+            }
 
-        private static void ModifyBooking(Passenger passenger)
-        {
-            throw new NotImplementedException();
         }
+        
 
-        private static void CancelBooking(Passenger passenger)
+        private static void ModifyBooking(Passenger passenger, List<Booking> bookings)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("***Modify a Booking***");
+            
+            ViewPersonalBookings(passenger);
+            Console.WriteLine("Enter the index of the Booking to modify:");
+            if (int.TryParse(Console.ReadLine(), out int selectedBookingIndex))
+            {
+                if (selectedBookingIndex >= 0 && selectedBookingIndex < passenger.Bookings.Count)
+                {
+                    var selectedBooking = passenger.Bookings[selectedBookingIndex];
+
+                    Console.WriteLine("Enter new flight class (1. Economy, 2. Business, 3. First Class):");
+
+                    if (Enum.TryParse<FlightClass>(Console.ReadLine(), out FlightClass newFlightClass))
+                    {
+                        selectedBooking.ModifyClass(newFlightClass);
+
+                        Console.WriteLine("Booking modified successfully!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid flight class. Please enter a valid class.");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid number.");
+            }
+        }   
+
+        private static void CancelBooking(Passenger passenger, List<Booking> bookings)
+        {
+            Console.WriteLine("Select a booking to Cancel:");
+            ViewPersonalBookings(passenger);
+            Console.WriteLine("Enter the Index of the Booking to Cancel: ");
+            if (int.TryParse(Console.ReadLine(), out int selectedBookingIndex))
+            {
+                if (selectedBookingIndex >= 0 && selectedBookingIndex < passenger.Bookings.Count)
+                {
+                    var selectedBooking = passenger.Bookings[selectedBookingIndex];
+                    bookings.Remove(selectedBooking);                                 
+                    passenger.CancelBooking(selectedBooking);
+                    selectedBooking.CancelBooking(selectedBooking);
+                    Console.WriteLine("Booking canceled successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid booking index. Please enter a valid index.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid number.");
+            }
         }
 
         private static void BookAFlight(List<Flight> flights, Passenger passenger, List<Booking> bookings)

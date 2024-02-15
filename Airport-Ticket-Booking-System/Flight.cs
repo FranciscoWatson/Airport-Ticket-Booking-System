@@ -167,6 +167,43 @@ namespace Airport_Ticket_Booking_System
         {
             return ++lastFlightId;
         }
+
+        public void CancelBooking(Booking selectedBooking)
+        {
+            bookings.Remove(selectedBooking);
+        }
+
+        public void ModifyClass(Booking booking, FlightClass newFlightClass)
+        {
+            if (bookings.Contains(booking))
+            {
+                int currentSeats = GetAvailableSeats(booking.FlightClass);
+                int newSeats = GetAvailableSeats(newFlightClass);
+
+                if (newSeats > 0)
+                {
+
+                    bookings.Remove(booking);
+
+
+                    booking.FlightClass = newFlightClass;
+
+  
+                    bookings.Add(booking);
+                    newSeats--;
+                    currentSeats++;
+                    Console.WriteLine("Booking class modified successfully!");
+                }
+                else
+                {
+                    Console.WriteLine($"No seats available in {newFlightClass} class.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("The selected booking does not belong to this flight.");
+            }
+        }
     }
 
 

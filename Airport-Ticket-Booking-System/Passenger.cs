@@ -46,5 +46,10 @@ namespace Airport_Ticket_Booking_System
         {
             return ++lastPassengerId;
         }
+
+        public void CancelBooking(Booking selectedBooking)
+        {
+            Bookings.Remove(selectedBooking);
+        }
     }
 }
