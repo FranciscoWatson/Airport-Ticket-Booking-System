@@ -35,7 +35,7 @@ namespace Airport_Ticket_Booking_System
 
                                 break;
                             case 3:
-                                // Manage Your Bookings
+                                ManageBookings(passenger);
                                 break;
 
                             case 4:
@@ -52,9 +52,64 @@ namespace Airport_Ticket_Booking_System
             }
         }
 
+        private static void ManageBookings(Passenger passenger)
+        {
+            bool menu = true;
+
+            while (menu)
+            {
+                Console.WriteLine("*** Manage Bookings ***");
+                Console.WriteLine("1. Cancel a Booking");
+                Console.WriteLine("2. Modify a Booking");
+                Console.WriteLine("3. View Personal Bookings");
+                Console.WriteLine("4. Go Back");
+                Console.Write("Enter an option (1-4): ");
+
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out int option))
+                {
+                    switch (option)
+                    {
+                        case 1:
+                            CancelBooking(passenger);
+                            break;
+                        case 2:
+                            ModifyBooking(passenger);
+                            break;
+                        case 3:
+                            ViewPersonalBookings(passenger);
+                            break;
+                        case 4:
+                            menu = false;
+                            break;
+                        default:
+                            Console.WriteLine("Invalid choice option");
+                            break;
+                    }
+                }
+                else Console.WriteLine("Invalid choice option");
+            }
+        }
+
+        private static void ViewPersonalBookings(Passenger passenger)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void ModifyBooking(Passenger passenger)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void CancelBooking(Passenger passenger)
+        {
+            throw new NotImplementedException();
+        }
+
         private static void BookAFlight(List<Flight> flights, Passenger passenger, List<Booking> bookings)
         {
-            Console.WriteLine("***Book a Flight***");
+            Console.WriteLine("*** Book a Flight ***");
             Console.WriteLine("Select a flight to book:");
             SelectFlight(flights);
             Console.WriteLine("Enter the index of the flight you want to book:");
@@ -76,7 +131,7 @@ namespace Airport_Ticket_Booking_System
                         Booking newBooking = new Booking(passenger, selectedFlight, selectedClass, DateTime.Now);
                         bookings.Add(newBooking);                      
                         
-
+                            
                     }
                     else
                     {
