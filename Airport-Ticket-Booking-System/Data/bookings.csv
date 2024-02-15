@@ -1,0 +1,4 @@
+BookingID,PassengerId,FlightId,FlightClass,BookingDate
+1,1,1,Economy,3/1/2024
+2,2,2,Business,3/1/2024
+3,3,3,FirstClass,3/1/2024

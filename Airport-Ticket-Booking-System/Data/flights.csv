@@ -1,0 +1,4 @@
+FlightId,EconomyPrice,BusinessPrice,FirstClassPrice,DepartureCountry,DestinationCountry,DepartureDate,DepartureAirport,ArrivalAirport,NumberOfEconomySeats,NumberOfBusinessSeats,NumberOfFirstClassSeats
+1,500.00,1000.00,1500.00,USA,Canada,3/1/2024,ATL,JFK,100,50,20
+2,400.50,800.75,1200.25,Canada,USA,3/5/2024,YVR,DFW,80,40,15
+3,600.75,1200.50,1800.25,Germany,France,3/10/2024,FRA,CDG,120,60,25
