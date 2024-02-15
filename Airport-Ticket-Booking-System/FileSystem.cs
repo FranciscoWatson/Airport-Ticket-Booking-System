@@ -11,6 +11,7 @@ using System.IO;
 using System.Reflection;
 using Airport_Ticket_Booking_System.Enums;
 using Airport_Ticket_Booking_System.Model;
+using System.ComponentModel.DataAnnotations;
 
 namespace Airport_Ticket_Booking_System
 {
@@ -140,8 +141,9 @@ namespace Airport_Ticket_Booking_System
             }
             catch (Exception ex)
             {
-                
+
                 Console.WriteLine($"Error reading CSV file: {ex.Message}");
+                Flight.DisplayValidationDetails();
             }
         }
     } 

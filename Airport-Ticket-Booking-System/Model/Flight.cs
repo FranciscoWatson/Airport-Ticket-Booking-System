@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Airport_Ticket_Booking_System.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace Airport_Ticket_Booking_System.Model
 {
@@ -233,6 +234,36 @@ namespace Airport_Ticket_Booking_System.Model
             {
                 Console.WriteLine("The selected booking does not belong to this flight.");
             }
+        }
+        public static void DisplayValidationDetails()
+        {
+            Type flightType = typeof(Flight);
+            PropertyInfo[] properties = flightType.GetProperties();
+
+            foreach (var property in properties)
+            {
+                Console.WriteLine($"* {property.Name}:");
+
+                var attributes = property.GetCustomAttributes<ValidationAttribute>(true);
+
+                foreach (var attribute in attributes)
+                {
+                    Console.WriteLine($"\t- Type: {property.PropertyType.Name}");
+                    Console.WriteLine($"\t- Constraint: {GetValidationDetails(attribute)}");
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        private static string GetValidationDetails(ValidationAttribute attribute)
+        {
+            return attribute switch
+            {
+                RequiredAttribute requiredAttribute => "Required",
+                RangeAttribute rangeAttribute => $"Allowed Range ({rangeAttribute.Minimum} → {rangeAttribute.Maximum})",
+                _ => "Unknown Constraint",
+            };
         }
     }
 
