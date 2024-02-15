@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Airport_Ticket_Booking_System.Enums;
 
-namespace Airport_Ticket_Booking_System
+namespace Airport_Ticket_Booking_System.Model
 {
     public class Booking
     {
@@ -53,7 +53,7 @@ namespace Airport_Ticket_Booking_System
         public void ModifyClass(FlightClass newFlightClass)
         {
 
-      //      FlightClass = newFlightClass;
+            //      FlightClass = newFlightClass;
             Flight.ModifyClass(this, newFlightClass);
         }
     }

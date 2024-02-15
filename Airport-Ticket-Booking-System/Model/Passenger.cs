@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Airport_Ticket_Booking_System
+namespace Airport_Ticket_Booking_System.Model
 {
     public class Passenger
     {
@@ -27,16 +27,17 @@ namespace Airport_Ticket_Booking_System
             Name = name;
         }
 
-        public void BookFlight(Booking newBooking) 
+        public void BookFlight(Booking newBooking)
         {
             try
-            {                               
+            {
                 Bookings.Add(newBooking);
-            }catch(FlightFullException ex)
+            }
+            catch (FlightFullException ex)
             {
                 Console.WriteLine($"An error occurred during booking. {ex.Message}");
             }
-            
+
         }
         public static void SetLastPassengerId(int value)
         {

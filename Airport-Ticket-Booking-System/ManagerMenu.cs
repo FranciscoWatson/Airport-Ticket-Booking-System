@@ -1,5 +1,6 @@
 ﻿
 using Airport_Ticket_Booking_System.Enums;
+using Airport_Ticket_Booking_System.Model;
 
 namespace Airport_Ticket_Booking_System
 

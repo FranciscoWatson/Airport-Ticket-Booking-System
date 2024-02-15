@@ -5,19 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Airport_Ticket_Booking_System
+namespace Airport_Ticket_Booking_System.Model
 {
     public class Manager
-    {       
+    {
         public string Name { get; set; }
         public List<Booking> Bookings;
-        
+
 
         public Manager(string name, List<Booking> bookings)
         {
             Name = name;
             Bookings = bookings;
-            
+
         }
         public List<Booking> FilterBookingsByFlight(Flight flight)
         {
@@ -51,12 +51,12 @@ namespace Airport_Ticket_Booking_System
         {
             return Bookings.Where(b => b.Passenger == passenger).ToList();
         }
-        
+
         public void ImportFlightsFromCsv(List<Flight> flights, string filePath, FileSystem fileSystem)
         {
 
             fileSystem.ImportFlightsFromCsv(filePath, flights);
-            
+
         }
 
     }

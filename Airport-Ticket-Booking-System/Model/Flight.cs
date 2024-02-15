@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Airport_Ticket_Booking_System.Enums;
 
-namespace Airport_Ticket_Booking_System
+namespace Airport_Ticket_Booking_System.Model
 {
     public class Flight
     {
@@ -188,7 +188,7 @@ namespace Airport_Ticket_Booking_System
 
                     booking.FlightClass = newFlightClass;
 
-  
+
                     bookings.Add(booking);
                     newSeats--;
                     currentSeats++;

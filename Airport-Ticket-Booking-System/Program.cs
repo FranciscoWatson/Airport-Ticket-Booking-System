@@ -1,5 +1,7 @@
 ﻿
 
+using Airport_Ticket_Booking_System.Model;
+
 namespace Airport_Ticket_Booking_System
 {
     public class Program
