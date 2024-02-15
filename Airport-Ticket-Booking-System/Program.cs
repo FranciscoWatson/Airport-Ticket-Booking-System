@@ -15,6 +15,7 @@ namespace Airport_Ticket_Booking_System
             
             while (mainMenu)
             {
+                Console.Clear();
                 Console.WriteLine("***Airport Ticket Booking System***");
                 Console.WriteLine("1. Login as Manager");
                 Console.WriteLine("2. Login as Passenger");
@@ -27,8 +28,9 @@ namespace Airport_Ticket_Booking_System
                 {
                     switch (option)
                     {
-                        case 1:                            
-                            ManagerMenu.Open(flights, bookings, passengers, fileSystem);
+                        case 1:
+                            Manager manager = new Manager("Francisco", bookings);
+                            ManagerMenu.Open(flights, bookings, passengers, fileSystem, manager);
                             break;
                         case 2:
                             Passenger passanger = SelectPassenger(passengers);
@@ -44,11 +46,6 @@ namespace Airport_Ticket_Booking_System
                     }
                 }
                 else Console.WriteLine("Invalid choice option");
-                Manager managerOne = new Manager("Francisco", bookings);
-
-                         Console.WriteLine(string.Join(Environment.NewLine, flights[0].bookings.Select(b =>
-                   $"Booking ID: {b.BookingID}, Passenger Name: {b.Passenger.Name}, Flight Class: {b.FlightClass}, Booking Date: {b.BookingDate}, From: {b.Flight.DepartureAirport}, To: {b.Flight.ArrivalAirport}")));
-                      
             }
             Console.WriteLine("Exiting Program...");
 
