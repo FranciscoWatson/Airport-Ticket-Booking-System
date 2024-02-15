@@ -6,23 +6,53 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Airport_Ticket_Booking_System.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Airport_Ticket_Booking_System.Model
 {
     public class Flight
     {
+
         private static int lastFlightId = 0;
+
         public int FlightId { get; set; }
+
+        [Required(ErrorMessage = "The Economy Price is required")]
+        [Range(0, double.MaxValue, ErrorMessage = "Economy Price must be a non-negative value")]
         public decimal EconomyPrice { get; set; }
+
+        [Required(ErrorMessage = "The Business Price is required.")]
         public decimal BusinessPrice { get; set; }
+
+        [Required(ErrorMessage = "The First Class price is required.")]
         public decimal FirstClassPrice { get; set; }
+
+        [Required(ErrorMessage = "The Departure Country is required.")]
         public string DepartureCountry { get; set; }
+
+        [Required(ErrorMessage = "The Destination Country is required.")]
         public string DestinationCountry { get; set; }
+
+        [Required(ErrorMessage = "The Departure Date is required.")]
+        [DataType(DataType.DateTime, ErrorMessage = "Invalid date format.")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime DepartureDate { get; set; }
+        [Required(ErrorMessage = "The Departure Airport is required.")]
         public string DepartureAirport { get; set; }
+
+        [Required(ErrorMessage = "The Arrival Airport is required.")]
         public string ArrivalAirport { get; set; }
+
+        [Required(ErrorMessage = "Number of Economy Seats is required.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Only positive number allowed")]
         public int NumberOfEconomySeats { get; set; }
+
+        [Required(ErrorMessage = "Number of Business Seats is required.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Only positive number allowed")]
         public int NumberOfBusinessSeats { get; set; }
+
+        [Required(ErrorMessage = "Number of First Class Seats is required.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Only positive number allowed")]
         public int NumberOfFirstClassSeats { get; set; }
 
         public List<Booking> bookings { get; set; } = new List<Booking>();

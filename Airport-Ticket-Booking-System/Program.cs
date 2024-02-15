@@ -17,7 +17,6 @@ namespace Airport_Ticket_Booking_System
             
             while (mainMenu)
             {
-                Console.Clear();
                 Console.WriteLine("***Airport Ticket Booking System***");
                 Console.WriteLine("1. Login as Manager");
                 Console.WriteLine("2. Login as Passenger");

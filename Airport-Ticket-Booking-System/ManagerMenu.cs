@@ -16,10 +16,9 @@ namespace Airport_Ticket_Booking_System
                 Console.Clear();
                 Console.WriteLine("***Manager Interface***");                
                 Console.WriteLine("1. Filter Bookings");
-                Console.WriteLine("2. Import Flights from Csv");
-                Console.WriteLine("3. Manage Bookings");
-                Console.WriteLine("4. Exit");
-                Console.Write("Enter an option (1-4): ");
+                Console.WriteLine("2. Import Flights from Csv");         
+                Console.WriteLine("3. Exit");
+                Console.Write("Enter an option (1-3): ");
 
                 string input = Console.ReadLine();
 
@@ -37,12 +36,8 @@ namespace Airport_Ticket_Booking_System
                             ClearConsoleAndContinue();
                             break;
                         case 3:
-                            // Manage Bookings
-                            break;
-                        case 4:
                             menu = false;
                             break;
-
                         default:
                             Console.WriteLine("Invalid choice option");
                             break;

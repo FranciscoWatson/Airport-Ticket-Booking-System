@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Airport_Ticket_Booking_System.Model
 {
@@ -14,6 +15,9 @@ namespace Airport_Ticket_Booking_System.Model
         private static int lastPassengerId = 0;
 
         public int PassengerId { get; set; }
+
+        [Required(ErrorMessage = "Name is required.")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters.")]
         public string Name { get; set; }
         public List<Booking> Bookings { get; set; } = new List<Booking>();
         public Passenger(string name)

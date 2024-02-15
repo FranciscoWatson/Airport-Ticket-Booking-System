@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Airport_Ticket_Booking_System.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Airport_Ticket_Booking_System.Model
 {
@@ -12,10 +13,20 @@ namespace Airport_Ticket_Booking_System.Model
     {
         private static int lastBookingId = 0;
         public int BookingID { get; set; }
-        public Flight Flight { get; }
+
+        [Required(ErrorMessage = "Passenger is required.")]
         public Passenger Passenger { get; }
-        public DateTime BookingDate { get; }
+
+        [Required(ErrorMessage = "Flight is required.")]
+        public Flight Flight { get; }
+
+        [Required(ErrorMessage = "Flight Class is required.")]
         public FlightClass FlightClass { get; set; }
+
+        [Required(ErrorMessage = "Booking Date is required.")]
+        [DataType(DataType.DateTime, ErrorMessage = "Invalid date format.")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        public DateTime BookingDate { get; }
 
         public Booking(int bookingId, Passenger passenger, Flight flight, FlightClass flightClass, DateTime bookingDate)
         {
