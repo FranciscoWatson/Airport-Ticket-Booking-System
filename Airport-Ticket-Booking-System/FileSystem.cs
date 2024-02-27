@@ -132,7 +132,7 @@ namespace Airport_Ticket_Booking_System
                         int.TryParse(values[9], out int numberOfEconomySeats);
                         int.TryParse(values[10], out int numberOfBusinessSeats);
                         int.TryParse(values[11], out int numberOfFirstClassSeats);
-                        Flight.SetLastFlightId(flightId - 1);
+                        flightId = flights.Count + 1;
                         Flight flight = new Flight(flightId, economyPrice, businessPrice, firstClassPrice, departureCountry, destinationCountry, departureDate, departureAirport, arrivalAirport, numberOfEconomySeats, numberOfBusinessSeats, numberOfFirstClassSeats);
                         flights.Add(flight);
                     }

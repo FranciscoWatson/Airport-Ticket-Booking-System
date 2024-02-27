@@ -19,7 +19,6 @@ namespace Airport_Ticket_Booking_System.Model
         public int FlightId { get; set; }
 
         [Required(ErrorMessage = "The Economy Price is required")]
-        [Range(0, double.MaxValue, ErrorMessage = "Economy Price must be a non-negative value")]
         public decimal EconomyPrice { get; set; }
 
         [Required(ErrorMessage = "The Business Price is required.")]
@@ -58,22 +57,6 @@ namespace Airport_Ticket_Booking_System.Model
 
         public List<Booking> bookings { get; set; } = new List<Booking>();
 
-        public Flight(decimal economyPrice, decimal businessPrice, decimal firstClassPrice, string departureCountry, string destinationCountry, DateTime departureDate, string departureAirport, string arrivalAirport, int numberOfEconomySeats, int numberOfBusinessSeats, int numberOfFirstClassSeats)
-        {
-            FlightId = GetNextFlightId();
-            EconomyPrice = economyPrice;
-            BusinessPrice = businessPrice;
-            FirstClassPrice = firstClassPrice;
-            DepartureCountry = departureCountry;
-            DestinationCountry = destinationCountry;
-            DepartureDate = departureDate;
-            DepartureAirport = departureAirport;
-            ArrivalAirport = arrivalAirport;
-            NumberOfEconomySeats = numberOfEconomySeats;
-            NumberOfBusinessSeats = numberOfBusinessSeats;
-            NumberOfFirstClassSeats = numberOfFirstClassSeats;
-
-        }
         public Flight(int flightId, decimal economyPrice, decimal businessPrice, decimal firstClassPrice, string departureCountry, string destinationCountry, DateTime departureDate, string departureAirport, string arrivalAirport, int numberOfEconomySeats, int numberOfBusinessSeats, int numberOfFirstClassSeats)
         {
             FlightId = flightId;
@@ -88,7 +71,6 @@ namespace Airport_Ticket_Booking_System.Model
             NumberOfEconomySeats = numberOfEconomySeats;
             NumberOfBusinessSeats = numberOfBusinessSeats;
             NumberOfFirstClassSeats = numberOfFirstClassSeats;
-
         }
 
         public void BookFlight(Booking booking, FlightClass flightClass)
@@ -188,15 +170,6 @@ namespace Airport_Ticket_Booking_System.Model
                 FlightClass.FirstClass => NumberOfFirstClassSeats,
                 _ => throw new InvalidOperationException("Invalid Flight Class"),
             };
-        }
-
-        public static void SetLastFlightId(int value)
-        {
-            lastFlightId = value;
-        }
-        private static int GetNextFlightId()
-        {
-            return ++lastFlightId;
         }
 
         public void CancelBooking(Booking selectedBooking)
