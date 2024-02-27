@@ -55,7 +55,6 @@ namespace Airport_Ticket_Booking_System
 
                         if (passenger != null && flight != null)
                         {
-                            Booking.SetLastBookingId(bookingId - 1); 
                             Booking booking = new Booking(bookingId, passenger, flight, flightClass, bookingDate);
                             bookings.Add(booking);
                             passenger.Bookings.Add(booking);

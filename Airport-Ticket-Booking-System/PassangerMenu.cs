@@ -1,6 +1,7 @@
 ﻿using Airport_Ticket_Booking_System.Enums;
 using Airport_Ticket_Booking_System.Model;
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 
 namespace Airport_Ticket_Booking_System
@@ -192,10 +193,11 @@ namespace Airport_Ticket_Booking_System
                     Console.WriteLine("Enter flight class (1. Economy, 2. Business, 3. First Class):");
                     if (Enum.TryParse<FlightClass>(Console.ReadLine(), out FlightClass selectedClass))
                     {
-                        Booking newBooking = new Booking(passenger, selectedFlight, selectedClass, DateTime.Now);
-                        bookings.Add(newBooking);                      
+                        int bookingId = bookings.Count+1;
+                        Booking newBooking = new Booking(bookingId, passenger, selectedFlight, selectedClass, DateTime.Now);
+                        bookings.Add(newBooking);                 
                         
-                            
+                         
                     }
                     else
                     {
