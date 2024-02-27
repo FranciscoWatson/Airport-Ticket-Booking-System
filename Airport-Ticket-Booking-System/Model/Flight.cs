@@ -14,7 +14,6 @@ namespace Airport_Ticket_Booking_System.Model
     public class Flight
     {
 
-        private static int lastFlightId = 0;
 
         public int FlightId { get; set; }
 
@@ -239,6 +238,4 @@ namespace Airport_Ticket_Booking_System.Model
             };
         }
     }
-
-
 }

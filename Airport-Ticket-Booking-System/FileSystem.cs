@@ -90,9 +90,7 @@ namespace Airport_Ticket_Booking_System
 
                         int passangerId = int.Parse(values[0]);
                         string name = values[1];
-
-                        Passenger.SetLastPassengerId(passangerId - 1);
-
+                                               
                         Passenger passenger = new Passenger(passangerId, name);
                         passengers.Add(passenger);
                     }
@@ -132,7 +130,7 @@ namespace Airport_Ticket_Booking_System
                         int.TryParse(values[9], out int numberOfEconomySeats);
                         int.TryParse(values[10], out int numberOfBusinessSeats);
                         int.TryParse(values[11], out int numberOfFirstClassSeats);
-                        flightId = flights.Count + 1;
+
                         Flight flight = new Flight(flightId, economyPrice, businessPrice, firstClassPrice, departureCountry, destinationCountry, departureDate, departureAirport, arrivalAirport, numberOfEconomySeats, numberOfBusinessSeats, numberOfFirstClassSeats);
                         flights.Add(flight);
                     }

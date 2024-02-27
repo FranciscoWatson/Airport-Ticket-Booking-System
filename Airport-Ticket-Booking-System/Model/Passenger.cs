@@ -12,7 +12,6 @@ namespace Airport_Ticket_Booking_System.Model
 {
     public class Passenger
     {
-        private static int lastPassengerId = 0;
 
         public int PassengerId { get; set; }
 
@@ -20,11 +19,7 @@ namespace Airport_Ticket_Booking_System.Model
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters.")]
         public string Name { get; set; }
         public List<Booking> Bookings { get; set; } = new List<Booking>();
-        public Passenger(string name)
-        {
-            PassengerId = GetNextPassengerId();
-            Name = name;
-        }
+
         public Passenger(int passengerId, string name)
         {
             PassengerId = passengerId;
@@ -42,14 +37,6 @@ namespace Airport_Ticket_Booking_System.Model
                 Console.WriteLine($"An error occurred during booking. {ex.Message}");
             }
 
-        }
-        public static void SetLastPassengerId(int value)
-        {
-            lastPassengerId = value;
-        }
-        private static int GetNextPassengerId()
-        {
-            return ++lastPassengerId;
         }
 
         public void CancelBooking(Booking selectedBooking)
