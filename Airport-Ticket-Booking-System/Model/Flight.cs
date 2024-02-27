@@ -72,43 +72,6 @@ namespace Airport_Ticket_Booking_System.Model
             NumberOfFirstClassSeats = numberOfFirstClassSeats;
         }
 
-        public void BookFlight(Booking booking, FlightClass flightClass)
-        {
-            switch (flightClass)
-            {
-                case FlightClass.Economy:
-                    if (NumberOfEconomySeats > 0)
-                    {
-                        bookings.Add(booking);
-                        NumberOfEconomySeats--;
-                    }
-                    else throw new InvalidOperationException("No seats available in Economy class");
-
-
-                    break;
-                case FlightClass.Business:
-                    if (NumberOfBusinessSeats > 0)
-                    {
-                        bookings.Add(booking);
-                        NumberOfBusinessSeats--;
-                    }
-                    else throw new InvalidOperationException("No seats available in Business class");
-
-                    break;
-                case FlightClass.FirstClass:
-                    if (NumberOfFirstClassSeats > 0)
-                    {
-                        bookings.Add(booking);
-                        NumberOfFirstClassSeats--;
-                    }
-                    else throw new InvalidOperationException("No seats available in First Class");
-
-                    break;
-                default:
-                    throw new InvalidOperationException("Invalid flight class");
-            }
-        }
-
         public void BookFlight(Booking booking)
         {
             switch (booking.FlightClass)

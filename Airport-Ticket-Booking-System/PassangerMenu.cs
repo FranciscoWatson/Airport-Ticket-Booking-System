@@ -195,7 +195,9 @@ namespace Airport_Ticket_Booking_System
                     {
                         int bookingId = bookings.Count+1;
                         Booking newBooking = new Booking(bookingId, passenger, selectedFlight, selectedClass, DateTime.Now);
-                        bookings.Add(newBooking);                 
+                        selectedFlight.BookFlight(newBooking);
+                        passenger.BookFlight(newBooking);
+                        bookings.Add(newBooking); 
                         
                          
                     }
