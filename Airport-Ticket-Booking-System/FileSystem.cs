@@ -17,7 +17,7 @@ namespace Airport_Ticket_Booking_System
 {
     public class FileSystem
     {
-        
+        public FileSystem() { }
         public FileSystem(List<Flight> flights, List<Booking> bookings, List<Passenger> passengers)
         {
 
@@ -103,7 +103,7 @@ namespace Airport_Ticket_Booking_System
         }
 
 
-        public void ImportFlightsFromCsv(string filePath, List<Flight> flights)
+        virtual public void ImportFlightsFromCsv(string filePath, List<Flight> flights)
         {
             try
             {
@@ -138,7 +138,6 @@ namespace Airport_Ticket_Booking_System
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine($"Error reading CSV file: {ex.Message}");
                 Flight.DisplayValidationDetails();
             }

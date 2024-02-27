@@ -14,10 +14,10 @@ namespace Airport_Ticket_Booking_System.Model
         public int BookingID { get; set; }
 
         [Required(ErrorMessage = "Passenger is required.")]
-        public Passenger Passenger { get; }
+        public Passenger Passenger { get; set; }
 
         [Required(ErrorMessage = "Flight is required.")]
-        public Flight Flight { get; }
+        public Flight Flight { get; set; }
 
         [Required(ErrorMessage = "Flight Class is required.")]
         public FlightClass FlightClass { get; set; }
@@ -25,7 +25,9 @@ namespace Airport_Ticket_Booking_System.Model
         [Required(ErrorMessage = "Booking Date is required.")]
         [DataType(DataType.DateTime, ErrorMessage = "Invalid date format.")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
-        public DateTime BookingDate { get; }
+        public DateTime BookingDate { get; set; }
+
+        public Booking() { }
 
         public Booking(int bookingId, Passenger passenger, Flight flight, FlightClass flightClass, DateTime bookingDate)
         {
