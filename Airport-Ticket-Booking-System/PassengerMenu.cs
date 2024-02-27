@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace Airport_Ticket_Booking_System
 {
-    public static class PassangerMenu
+    public static class PassengerMenu
     {
         public static void Open(List<Flight> flights, List<Booking> bookings, Passenger passenger)
         {

@@ -56,6 +56,10 @@ namespace Airport_Ticket_Booking_System.Model
 
         public List<Booking> bookings { get; set; } = new List<Booking>();
 
+        public Flight()
+        {
+            
+        }
         public Flight(int flightId, decimal economyPrice, decimal businessPrice, decimal firstClassPrice, string departureCountry, string destinationCountry, DateTime departureDate, string departureAirport, string arrivalAirport, int numberOfEconomySeats, int numberOfBusinessSeats, int numberOfFirstClassSeats)
         {
             FlightId = flightId;
