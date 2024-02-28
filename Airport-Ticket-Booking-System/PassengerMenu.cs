@@ -157,7 +157,7 @@ namespace Airport_Ticket_Booking_System
                     var selectedBooking = passenger.Bookings[selectedBookingIndex];
                     bookings.Remove(selectedBooking);                                 
                     passenger.CancelBooking(selectedBooking);
-                    selectedBooking.CancelBooking(selectedBooking);
+                    selectedBooking.CancelBooking();
                     Console.WriteLine("Booking canceled successfully!");
                 }
                 else

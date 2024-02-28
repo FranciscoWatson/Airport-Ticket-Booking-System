@@ -138,12 +138,12 @@ namespace Airport_Ticket_Booking_System.Model
             };
         }
 
-        public void CancelBooking(Booking selectedBooking)
+        virtual public void CancelBooking(Booking selectedBooking)
         {
             bookings.Remove(selectedBooking);
         }
 
-        public void ModifyClass(Booking booking, FlightClass newFlightClass)
+        virtual public void ModifyClass(Booking booking, FlightClass newFlightClass)
         {
             if (bookings.Contains(booking))
             {

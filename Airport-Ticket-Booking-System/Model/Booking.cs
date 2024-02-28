@@ -38,9 +38,9 @@ namespace Airport_Ticket_Booking_System.Model
             BookingDate = bookingDate;
         }
 
-        public void CancelBooking(Booking selectedBooking)
+        public void CancelBooking()
         {
-            Flight.CancelBooking(selectedBooking);
+            Flight.CancelBooking(this);
         }
 
         public void ModifyClass(FlightClass newFlightClass)
