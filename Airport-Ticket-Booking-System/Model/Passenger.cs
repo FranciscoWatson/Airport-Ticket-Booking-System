@@ -27,16 +27,8 @@ namespace Airport_Ticket_Booking_System.Model
         }
 
         public void BookFlight(Booking newBooking)
-        {
-            try
-            {
-                Bookings.Add(newBooking);
-            }
-            catch (FlightFullException ex)
-            {
-                Console.WriteLine($"An error occurred during booking. {ex.Message}");
-            }
-
+        {        
+             Bookings.Add(newBooking);
         }
 
         public void CancelBooking(Booking selectedBooking)
