@@ -17,7 +17,7 @@ namespace Airport_Ticket_Booking_System
 {
     public class FileSystem
     {
-        
+        public FileSystem() { }
         public FileSystem(List<Flight> flights, List<Booking> bookings, List<Passenger> passengers)
         {
 
@@ -55,7 +55,6 @@ namespace Airport_Ticket_Booking_System
 
                         if (passenger != null && flight != null)
                         {
-                            Booking.SetLastBookingId(bookingId - 1); 
                             Booking booking = new Booking(bookingId, passenger, flight, flightClass, bookingDate);
                             bookings.Add(booking);
                             passenger.Bookings.Add(booking);
@@ -90,9 +89,7 @@ namespace Airport_Ticket_Booking_System
 
                         int passangerId = int.Parse(values[0]);
                         string name = values[1];
-
-                        Passenger.SetLastPassengerId(passangerId - 1);
-
+                                               
                         Passenger passenger = new Passenger(passangerId, name);
                         passengers.Add(passenger);
                     }
@@ -106,7 +103,7 @@ namespace Airport_Ticket_Booking_System
         }
 
 
-        public void ImportFlightsFromCsv(string filePath, List<Flight> flights)
+        virtual public void ImportFlightsFromCsv(string filePath, List<Flight> flights)
         {
             try
             {
@@ -132,7 +129,7 @@ namespace Airport_Ticket_Booking_System
                         int.TryParse(values[9], out int numberOfEconomySeats);
                         int.TryParse(values[10], out int numberOfBusinessSeats);
                         int.TryParse(values[11], out int numberOfFirstClassSeats);
-                        Flight.SetLastFlightId(flightId - 1);
+
                         Flight flight = new Flight(flightId, economyPrice, businessPrice, firstClassPrice, departureCountry, destinationCountry, departureDate, departureAirport, arrivalAirport, numberOfEconomySeats, numberOfBusinessSeats, numberOfFirstClassSeats);
                         flights.Add(flight);
                     }
@@ -141,7 +138,6 @@ namespace Airport_Ticket_Booking_System
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine($"Error reading CSV file: {ex.Message}");
                 Flight.DisplayValidationDetails();
             }
