@@ -36,7 +36,7 @@ namespace Airport_Ticket_Booking_System
                             break;
                         case 2:
                             Passenger passanger = SelectPassenger(passengers);
-                            PassangerMenu.Open(flights, bookings, passanger);                            
+                            PassengerMenu.Open(flights, bookings, passanger);                            
                             break;
                         case 3:
                             mainMenu = false;

@@ -10,7 +10,7 @@ namespace Airport_Ticket_Booking_System.Model
     public class Manager
     {
         public string Name { get; set; }
-        public List<Booking> Bookings;
+        public List<Booking> Bookings { get; set; }
 
 
         public Manager(string name, List<Booking> bookings)
